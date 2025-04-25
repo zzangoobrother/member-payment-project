@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:latest
+    container_name: member_payment_mysql
+    environment:
+      MYSQL_DATABASE: 'member_payment'
+      MYSQL_USER: 'test'
+      MYSQL_PASSWORD: '1234'
+      MYSQL_ROOT_PASSWORD: '1234'
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
