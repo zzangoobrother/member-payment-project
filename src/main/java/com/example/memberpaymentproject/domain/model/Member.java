@@ -19,12 +19,8 @@ public class Member extends BaseTimeEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "inquiry_count")
-    private Long inquiryCount;
-
     @Builder
-    public Member(String name, Long inquiryCount) {
+    public Member(String name) {
         this.name = name;
-        this.inquiryCount = inquiryCount;
     }
 }
