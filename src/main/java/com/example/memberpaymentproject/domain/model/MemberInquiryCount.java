@@ -28,4 +28,8 @@ public class MemberInquiryCount {
         this.member = member;
         this.inquiryCount = inquiryCount;
     }
+
+    public void addInquiryCount() {
+        this.inquiryCount++;
+    }
 }
