@@ -1,5 +1,6 @@
 package com.example.memberpaymentproject.infrastructure.persistence;
 
+import com.example.memberpaymentproject.domain.model.Member;
 import com.example.memberpaymentproject.domain.model.MemberInquiryCount;
 import com.example.memberpaymentproject.domain.repository.MemberInquiryCountRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,5 +15,12 @@ public class MemberInquiryCountRepositoryImpl implements MemberInquiryCountRepos
     @Override
     public MemberInquiryCount save(MemberInquiryCount memberInquiryCount) {
         return repository.save(memberInquiryCount);
+    }
+
+    @Override
+    public MemberInquiryCount getByMember(Member member) {
+        return repository.findByMember(member).orElseThrow(
+                () -> new IllegalArgumentException("")
+        );
     }
 }

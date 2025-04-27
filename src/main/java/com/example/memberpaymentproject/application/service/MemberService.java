@@ -1,6 +1,7 @@
 package com.example.memberpaymentproject.application.service;
 
 import com.example.memberpaymentproject.application.service.dto.CreateMemberDto;
+import com.example.memberpaymentproject.domain.manager.MemberLockManager;
 import com.example.memberpaymentproject.domain.model.Member;
 import com.example.memberpaymentproject.domain.model.MemberInquiryCount;
 import com.example.memberpaymentproject.domain.repository.MemberInquiryCountRepository;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberService {
 
+    private final MemberLockManager memberLockManager;
     private final MemberRepository memberRepository;
     private final MemberInquiryCountRepository memberInquiryCountRepository;
 
@@ -31,6 +33,11 @@ public class MemberService {
 
     public Page<SearchMemberResponse> getAllBy(SearchSorting searchSorting, int page) {
         return memberRepository.search(searchSorting, page);
+    }
+
+
+    public SearchMemberResponse updateInquiry(Long memberId) {
+        return memberLockManager.updateInquiry(memberId);
     }
 }
 

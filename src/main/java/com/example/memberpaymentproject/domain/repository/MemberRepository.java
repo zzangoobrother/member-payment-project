@@ -9,4 +9,6 @@ public interface MemberRepository {
     Member save(Member member);
 
     Page<SearchMemberResponse> search(SearchSorting searchSorting, int page);
+
+    Member getByMemberId(Long memberId);
 }

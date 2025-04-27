@@ -6,6 +6,7 @@ import com.example.memberpaymentproject.interfaces.presentation.request.CreateMe
 import com.example.memberpaymentproject.interfaces.presentation.response.SearchMemberResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -15,6 +16,7 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/members")
     public void create(@RequestBody CreateMemberRequest request) {
         memberService.create(request.toCreateMemberDto());
@@ -23,5 +25,10 @@ public class MemberController {
     @GetMapping("/members")
     public Page<SearchMemberResponse> getAllBy(@RequestParam SearchSorting searchSorting, @RequestParam int page) {
         return memberService.getAllBy(searchSorting, page);
+    }
+
+    @PutMapping("/members/{memberId}/inquiry")
+    public SearchMemberResponse updateInquiry(@PathVariable Long memberId) {
+        return memberService.updateInquiry(memberId);
     }
 }
