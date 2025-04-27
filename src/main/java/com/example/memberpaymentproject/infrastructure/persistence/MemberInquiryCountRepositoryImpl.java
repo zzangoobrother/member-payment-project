@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
 @Repository
-public class MemberInquiryCountRepositoryImpl implements MemberInquiryCountRepository {
+class MemberInquiryCountRepositoryImpl implements MemberInquiryCountRepository {
 
     private final MemberInquiryCountJpaRepository repository;
 
