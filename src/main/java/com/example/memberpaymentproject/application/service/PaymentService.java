@@ -1,5 +1,6 @@
 package com.example.memberpaymentproject.application.service;
 
+import com.example.memberpaymentproject.application.event.dto.CreatePointDto;
 import com.example.memberpaymentproject.domain.model.Member;
 import com.example.memberpaymentproject.domain.model.Payment;
 import com.example.memberpaymentproject.domain.model.PaymentStatus;
@@ -10,6 +11,7 @@ import com.example.memberpaymentproject.interfaces.feign.PaymentClient;
 import com.example.memberpaymentproject.interfaces.feign.request.TossPaymentRequest;
 import com.example.memberpaymentproject.interfaces.feign.response.TossPaymentResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +22,7 @@ import java.util.Base64;
 @Service
 public class PaymentService {
 
+    private final ApplicationEventPublisher publisher;
     private final PaymentProperties paymentProperties;
     private final PaymentClient paymentClient;
     private final MemberRepository memberRepository;
@@ -45,5 +48,7 @@ public class PaymentService {
                 .paymentStatus(PaymentStatus.COMPLETED)
                 .build();
         paymentRepository.save(payment);
+
+        publisher.publishEvent(new CreatePointDto(memberId, amount));
     }
 }

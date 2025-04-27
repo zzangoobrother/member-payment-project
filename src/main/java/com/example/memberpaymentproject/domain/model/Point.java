@@ -2,15 +2,14 @@ package com.example.memberpaymentproject.domain.model;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "member_inquiry_count")
+@Table(name = "point")
 @Entity
-public class MemberInquiryCount {
+public class Point extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,16 +19,15 @@ public class MemberInquiryCount {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @Column(name = "inquiry_count")
-    private Long inquiryCount;
+    @Column(name = "amount")
+    private int amount;
 
-    @Builder
-    public MemberInquiryCount(Member member, Long inquiryCount) {
+    public Point(Member member, int amount) {
         this.member = member;
-        this.inquiryCount = inquiryCount;
+        this.amount = amount;
     }
 
-    public void addInquiryCount() {
-        this.inquiryCount++;
+    public void addAmount(int amount) {
+        this.amount += amount;
     }
 }
