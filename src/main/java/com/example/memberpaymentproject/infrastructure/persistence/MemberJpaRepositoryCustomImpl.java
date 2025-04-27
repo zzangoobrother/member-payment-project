@@ -17,7 +17,7 @@ import static com.example.memberpaymentproject.domain.model.QMemberInquiryCount.
 
 @RequiredArgsConstructor
 @Repository
-public class MemberJpaRepositoryCustomImpl implements MemberJpaRepositoryCustom {
+class MemberJpaRepositoryCustomImpl implements MemberJpaRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 

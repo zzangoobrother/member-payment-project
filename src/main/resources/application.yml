@@ -9,3 +9,8 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+
+payment:
+  secret-key:
+    toss: test_gsk_docs_OaPz8L5KdmQXkzRz3y47BMw6
+    port-one: aaaaa
