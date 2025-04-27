@@ -2,7 +2,7 @@ package com.example.memberpaymentproject.interfaces.presentation.request;
 
 public record PaymentRequest(
         Long memberId,
-        Long orderId,
+        String orderId,
         int amount,
         String paymentKey
 ) {

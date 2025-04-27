@@ -2,6 +2,7 @@ package com.example.memberpaymentproject.interfaces.feign;
 
 import com.example.memberpaymentproject.global.exception.feign.PaymentFeignClientErrorDecoder;
 import com.example.memberpaymentproject.interfaces.feign.request.TossPaymentRequest;
+import com.example.memberpaymentproject.interfaces.feign.response.TossPaymentResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,5 +12,5 @@ import org.springframework.web.bind.annotation.RequestHeader;
 public interface PaymentClient {
 
     @PostMapping(value = "/payments/confirm", consumes = "application/json; charset=UTF-8")
-    String payment(@RequestHeader("Authorization") String authorization, @RequestBody TossPaymentRequest request);
+    TossPaymentResponse payment(@RequestHeader("Authorization") String authorization, @RequestBody TossPaymentRequest request);
 }
