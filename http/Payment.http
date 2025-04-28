@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "memberId" : "1",
-  "orderId" : "MC4wMjYwOTUyMDAxMTgz",
-  "amount" : "45000",
-  "paymentKey" : "tgen_20250427234547N95Q8"
+  "orderId" : "MC44MTcyODE2NzIwMzY0",
+  "amount" : "50000",
+  "paymentKey" : "tgen_20250428212226FzOb1"
 }
