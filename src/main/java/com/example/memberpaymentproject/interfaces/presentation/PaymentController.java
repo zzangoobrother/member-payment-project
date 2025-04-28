@@ -17,6 +17,6 @@ public class PaymentController {
 
     @PostMapping("/payments")
     public void payment(@RequestBody PaymentRequest request) {
-        paymentService.payment(request.memberId(), request.orderId(), request.amount(), request.paymentKey());
+        paymentService.payment(request.memberId(), request.orderId(), request.amount(), request.paymentKey(), request.payType());
     }
 }
