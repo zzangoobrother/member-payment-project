@@ -1,6 +1,6 @@
 package com.example.memberpaymentproject.application.service;
 
-import com.example.memberpaymentproject.application.event.dto.CreatePointDto;
+import com.example.memberpaymentproject.application.event.dto.AccumulatePointDto;
 import com.example.memberpaymentproject.domain.model.Member;
 import com.example.memberpaymentproject.domain.model.Payment;
 import com.example.memberpaymentproject.domain.model.PaymentStatus;
@@ -49,6 +49,6 @@ public class PaymentService {
                 .build();
         paymentRepository.save(payment);
 
-        publisher.publishEvent(new CreatePointDto(memberId, amount));
+        publisher.publishEvent(new AccumulatePointDto(memberId, amount));
     }
 }

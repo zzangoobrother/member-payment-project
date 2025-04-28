@@ -20,9 +20,9 @@ public class PointService {
     private final PointDetailsRepository pointDetailsRepository;
 
     @Transactional
-    public void createPoint(Long memberId, int amount) {
+    public void accumulatePoint(Long memberId, int amount) {
         Member member = memberRepository.getByMemberId(memberId);
-        Point point = pointRepository.getByMember(member);
+        Point point = pointRepository.getByMemberWithPessimisticLock(member);
         point.addAmount(amount);
 
         PointDetails pointDetails = PointDetails.builder()
@@ -31,5 +31,9 @@ public class PointService {
                 .balance(amount)
                 .build();
         pointDetailsRepository.save(pointDetails);
+    }
+
+    public Point getBy(Long pointId) {
+        return pointRepository.getBy(pointId);
     }
 }

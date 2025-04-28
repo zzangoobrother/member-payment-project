@@ -21,7 +21,21 @@ class PointRepositoryImpl implements PointRepository {
     }
 
     @Override
+    public Point getByMemberWithPessimisticLock(Member member) {
+        return repository.findByMemberWithPessimisticLock(member).orElseThrow(
+                () -> new IllegalArgumentException("")
+        );
+    }
+
+    @Override
     public Point save(Point point) {
         return repository.save(point);
+    }
+
+    @Override
+    public Point getBy(Long pointId) {
+        return repository.findById(pointId).orElseThrow(
+                () -> new IllegalArgumentException("")
+        );
     }
 }
