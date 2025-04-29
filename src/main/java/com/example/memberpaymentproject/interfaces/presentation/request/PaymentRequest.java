@@ -1,12 +1,14 @@
 package com.example.memberpaymentproject.interfaces.presentation.request;
 
-import com.example.memberpaymentproject.domain.manager.pay.PayType;
+import com.example.memberpaymentproject.application.event.dto.PaymentDto;
 
 public record PaymentRequest(
         Long memberId,
-        String orderId,
-        int amount,
-        String paymentKey,
-        PayType payType
+        Long couponId,
+        int amount
 ) {
+
+    public PaymentDto toPaymentDto() {
+        return new PaymentDto(memberId, couponId, amount);
+    }
 }

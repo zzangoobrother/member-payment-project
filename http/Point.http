@@ -1,0 +1,10 @@
+POST localhost:8080/api/v1/point/load
+Content-Type: application/json
+
+{
+  "memberId" : "1",
+  "orderId" : "MC45ODQ2MTYyODI1MjY3",
+  "amount" : "50000",
+  "paymentKey" : "tgen_20250429230632Se2a0",
+  "payType" : "TOSS_PAY"
+}

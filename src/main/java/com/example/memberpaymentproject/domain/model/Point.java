@@ -30,4 +30,8 @@ public class Point extends BaseTimeEntity {
     public void addAmount(int amount) {
         this.amount += amount;
     }
+
+    public void payment(int amount) {
+        this.amount -= amount;
+    }
 }
