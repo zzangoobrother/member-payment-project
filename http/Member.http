@@ -2,7 +2,7 @@ POST localhost:8080/api/v1/members
 Content-Type: application/json
 
 {
-  "name": "가다라마"
+  "name": "사나마"
 }
 
 ###
@@ -12,5 +12,5 @@ Content-Type: application/json
 
 ###
 
-PUT localhost:8080/api/v1/members/1/inquiry
+PUT localhost:8080/api/v1/members/6/inquiry
 Content-Type: application/json

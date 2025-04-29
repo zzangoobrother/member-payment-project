@@ -8,7 +8,12 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "member_inquiry_count")
+@Table(
+        name = "member_inquiry_count",
+        indexes = {
+                @Index(name = "idx_inquiry_count", columnList = "inquiry_count")
+        }
+)
 @Entity
 public class MemberInquiryCount {
 
