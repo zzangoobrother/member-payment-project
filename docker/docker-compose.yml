@@ -2,7 +2,7 @@ version: '3.8'
 services:
   db:
     image: mysql:latest
-    container_name: member_payment_mysql
+    container_name: member-payment-mysql
     environment:
       MYSQL_DATABASE: 'member_payment'
       MYSQL_USER: 'test'
@@ -11,4 +11,13 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - ./mysql/init:/docker-entrypoint-initdb.d
+      - 'mysqldata:/var/lib/mysql'
+
+    networks:
+      - member_payment_test
+
+volumes:
+  mysqldata:
+
+networks:
+  member_payment_test:

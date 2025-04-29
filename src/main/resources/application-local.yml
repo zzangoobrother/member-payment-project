@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/member_payment?useUnicode=true&serverTimezone=Asia/Seoul&autoReconnect=true&rewriteBatchedStatements=true
+    username: test
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+payment:
+  secret-key:
+    toss: test_gsk_docs_OaPz8L5KdmQXkzRz3y47BMw6
+    port-one: aaaaa
