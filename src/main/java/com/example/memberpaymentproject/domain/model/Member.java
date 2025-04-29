@@ -8,7 +8,13 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "member")
+@Table(
+        name = "member",
+        indexes = {
+                @Index(name = "idx_name", columnList = "name"),
+                @Index(name = "idx_created_at", columnList = "created_at")
+        }
+)
 @Entity
 public class Member extends BaseTimeEntity {
 
