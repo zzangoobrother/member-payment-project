@@ -34,11 +34,11 @@ public class Coupon extends BaseTimeEntity {
 
     public int calculateDiscount(int amount) {
         int discountPrice = amount * getDiscountPercent() / 100;
-        System.out.println(discountPrice);
+        
         if (discountPrice > getLimitPrice()) {
             discountPrice = getLimitPrice();
         }
-        System.out.println(discountPrice);
+        
         return discountPrice;
     }
 }

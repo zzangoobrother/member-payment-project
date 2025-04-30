@@ -13,11 +13,8 @@ public class CouponRepositoryImpl implements CouponRepository {
 
     @Override
     public Coupon getBy(Long couponId) {
-        return repository.findById(couponId).orElse(
-                Coupon.builder()
-                        .discountPercent(0)
-                        .limitPrice(0)
-                        .build()
+        return repository.findById(couponId).orElseThrow(
+            () -> new IllegalArgumentException("해당 쿠폰을 찾을 수 없습니다.")
         );
     }
 

@@ -35,12 +35,12 @@ public class PaymentService {
         int amount = pointDto.amount();
         String paymentKey = pointDto.paymentKey();
 
-        Member member = memberRepository.getByMemberId(memberId);
+        Member member = getByMemberId(memberId);
 
         PayManager payManager = payManagers.stream()
                 .filter(it -> it.supports(payType))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(""));
+                .orElseThrow(() -> new IllegalArgumentException("결제 방식을 선택해주세요."));
 
         String method = payManager.payment(orderId, amount, paymentKey);
 
@@ -52,30 +52,34 @@ public class PaymentService {
 
     @Transactional
     public void payment(PaymentDto paymentDto) {
-        Member member = memberRepository.getByMemberId(paymentDto.memberId());
+        Member member = getByMemberId(paymentDto.memberId());
 
         int amount = paymentDto.amount();
-        Coupon coupon = couponRepository.getBy(paymentDto.couponId());
-        int discountAmount = coupon.calculateDiscount(amount);
-        System.out.println(discountAmount);
-        int resultAmount = amount - discountAmount;
+        if (!Objects.isNull(paymentDto.couponId())) {
+            Coupon coupon = couponRepository.getBy(paymentDto.couponId());
+            int discountAmount = coupon.calculateDiscount(amount);
+
+            amount = amount - discountAmount;
+
+            memberCouponRepository.save(new MemberCoupon(member, coupon));
+        }
 
         Point point = pointRepository.getByMember(member);
-        if (point.getAmount() < resultAmount) {
+        if (point.getAmount() < amount) {
             throw new IllegalArgumentException("포인트 잔액이 부족합니다.");
         }
 
-        point.payment(resultAmount);
+        point.payment(amount);
 
         PointDetails pointDetails = PointDetails.builder()
                 .point(point)
                 .businessType(BusinessType.USED)
-                .balance(resultAmount)
+                .balance(amount)
                 .build();
         pointDetailsRepository.save(pointDetails);
+    }
 
-        memberCouponRepository.save(
-                new MemberCoupon(member, coupon)
-        );
+    private Member getByMemberId(Long memberId) {
+        return memberRepository.getByMemberId(memberId);
     }
 }
