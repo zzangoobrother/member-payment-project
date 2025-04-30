@@ -20,7 +20,7 @@ class MemberInquiryCountRepositoryImpl implements MemberInquiryCountRepository {
     @Override
     public MemberInquiryCount getByMember(Member member) {
         return repository.findByMember(member).orElseThrow(
-                () -> new IllegalArgumentException("")
+                () -> new IllegalArgumentException("해당 회원을 찾을 수 없습니다.")
         );
     }
 }

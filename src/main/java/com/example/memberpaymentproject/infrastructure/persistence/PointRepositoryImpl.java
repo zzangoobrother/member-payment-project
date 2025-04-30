@@ -16,14 +16,14 @@ class PointRepositoryImpl implements PointRepository {
     @Override
     public Point getByMember(Member member) {
         return repository.findByMember(member).orElseThrow(
-                () -> new IllegalArgumentException("")
+                () -> new IllegalArgumentException("해당 포인트를 찾을 수 없습니다.")
         );
     }
 
     @Override
     public Point getByMemberWithPessimisticLock(Member member) {
         return repository.findByMemberWithPessimisticLock(member).orElseThrow(
-                () -> new IllegalArgumentException("")
+                () -> new IllegalArgumentException("해당 포인트를 찾을 수 없습니다.")
         );
     }
 
@@ -35,7 +35,7 @@ class PointRepositoryImpl implements PointRepository {
     @Override
     public Point getBy(Long pointId) {
         return repository.findById(pointId).orElseThrow(
-                () -> new IllegalArgumentException("")
+                () -> new IllegalArgumentException("해당 포인트를 찾을 수 없습니다.")
         );
     }
 }

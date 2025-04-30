@@ -65,7 +65,7 @@ public class PaymentService {
             memberCouponRepository.save(new MemberCoupon(member, coupon));
         }
 
-        Point point = pointRepository.getByMember(member);
+        Point point = pointRepository.getByMemberWithPessimisticLock(member);
         if (point.getAmount() < amount) {
             throw new IllegalArgumentException("포인트 잔액이 부족합니다.");
         }
